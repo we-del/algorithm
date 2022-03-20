@@ -1,0 +1,20 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+
+
+class ArrayList {
+Object[] elementData
+size()
+}
+
+class B {
+    public ArrayList a;
+
+'    public void setA(ArrayList a){
+'        this.a = a;
+'    }
+}
+
+@enduml
