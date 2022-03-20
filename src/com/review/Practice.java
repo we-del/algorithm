@@ -19,11 +19,12 @@ import java.util.List;
  */
 public class Practice {
     public static void main(String[] args) {
-       // graphTest(); // 图的测试
+        // graphTest(); // 图的测试
         // KMPTest();
         //startRadixSort();
         //startMergeSort();
-        startHeapSort(); // 推排序测试
+        //startHeapSort(); // 推排序测试
+        startQuickSort();
     }
 
     public static void graphTest() {
@@ -69,6 +70,13 @@ public class Practice {
         HeapSort heapSort = new HeapSort();
         int[] arr = {4, 5, 3, 6, 2, 1};
         heapSort.heapSort(arr);
+        System.out.println(Arrays.toString(arr));
+    }
+
+    public static void startQuickSort() {
+        int[] arr = {3, 5, 4, 0, 4, 6, 7, 2};
+        //int[] arr = {3, 5, 4, 6, 7, 2};
+        QuickSort.quickSort(arr, 0, arr.length - 1);
         System.out.println(Arrays.toString(arr));
     }
 }
@@ -315,7 +323,7 @@ class HeapSort {
     private void heapAdjust(int[] arr, int i, int length) {
         int val = arr[i];
         for (int j = i * 2 + 1; j < length; j = j * 2 + 1) {
-            if (j+1 < length&&arr[j] < arr[j + 1]) j++;
+            if (j + 1 < length && arr[j] < arr[j + 1]) j++;
             if (arr[j] > val) {
                 arr[i] = arr[j];
                 i = j;
@@ -324,6 +332,34 @@ class HeapSort {
             }
         }
         arr[i] = val;
+    }
+}
+
+class QuickSort {
+    public static void quickSort(int[] arr, int left, int right) {
+        if (left > right) return;
+        int l = left;
+        int r = right;
+        int pivot = arr[left];
+        while (true) {
+
+            while (l != r && arr[r] >= pivot) {
+                r--;
+            }
+            while (l != r && arr[l] <= pivot) {
+                l++;
+            }
+            if (l == r) {
+                arr[left] = arr[r];
+                arr[r] = pivot;
+                break;
+            }
+            int tmp = arr[r];
+            arr[r] = arr[l];
+            arr[l] = tmp;
+        }
+        quickSort(arr, left, l - 1);
+        quickSort(arr, l + 1, right);
     }
 }
 

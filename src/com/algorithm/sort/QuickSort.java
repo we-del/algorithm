@@ -26,8 +26,11 @@ public class QuickSort {
 //        int[] arr = {38, 64, 74, 28, 82, 8, 59, 52, 58, 73, 56, 39};
 //        int[] arr1 = {38, 64, 74, 28, 82, 8, 59, 52, 58, 73, 56, 39};
 //        int[] arr2 = {38, 64, 74, 28, 82, 8, 59, 52, 58, 73, 56, 39};
-        int[] arr = RandomArray.randomArray(10);
+       // int[] arr = RandomArray.randomArray(10);
         int[] arr1 = {3,3,2,2,5,6,6,54,1,2,3,1,2};
+        int[] arr = {3, 5, 4, 0, 4, 6, 7, 2};
+        quickSort(arr,0,arr.length-1);
+        System.out.println(Arrays.toString(arr));
         //3,3,2,2,5,6,6,54,1,2,3,1,2
         //3,3,2,2,2,6,6,54,1,2,3,1,5
         //3,3,2,2,2,1,6,54,1,2,3,6,5

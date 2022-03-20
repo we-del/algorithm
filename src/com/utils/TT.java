@@ -1,5 +1,7 @@
 package com.utils;
 
+import java.util.Arrays;
+
 /**
  * ClassName: TT
  * Description:
@@ -17,14 +19,23 @@ public class TT {
         //定义 自增变量sum1 从2 - 100
         //for  循环输出 2-100
         //定义 控符变量sum2 (sum1%2)为不为0,从而控制符号
-        //输出
-        int sum1 = 0;
-        double constant = 1.0;
-        double count = 0.0;
-        for (sum1 = 1; sum1 <= 100; sum1++) {
-            count += constant / sum1;
-            constant *= -constant;
+
+        process(new int[]{4, 2, 1, 3, 5, 9, 8, 7});
+    }
+
+    public static int[] process(int[] arr) {
+        String odd = "";
+        String even = "";
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] % 2 == 1) {
+                odd += arr[i] + " ";
+            } else {
+                even += arr[i] + " ";
+            }
         }
-        System.out.println(count);
+        String[] s = odd.split(" ");
+        String[] s1 = even.split(" ");
+        System.out.println(Arrays.toString(s) + " "+Arrays.toString(s1));
+        return null;
     }
 }
