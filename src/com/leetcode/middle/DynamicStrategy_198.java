@@ -31,7 +31,7 @@ package com.leetcode.middle;
  */
 public class DynamicStrategy_198 {
     public static void main(String[] args) {
-        System.out.println(new DynamicStrategy_198().rob(new int[]{1, 3, 1, 3, 100, 32, 102}));
+        System.out.println(new DynamicStrategy_198().rob(new int[]{1,2,4,6,7,8,9}));
     }
 
     /**
