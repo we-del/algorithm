@@ -72,8 +72,10 @@ public class DynamicStrategy_198 {
         tmp[0] = nums[0];
         tmp[1] = Math.max(tmp[0], nums[1]);
         for (int i = 2; i < len; i++) {
+            // tmp[i-1] 为当前路径的最大数    tmp[i - 2] + nums[i] 为最新路径的数
+            // 将这两个数做比较即可拿到最大的不相连数和
             tmp[i] = Math.max(tmp[i - 1], tmp[i - 2] + nums[i]);
         }
-        return tmp[len - 1];
+        return tmp[len - 1];  // 返回最大路径数
     }
 }
