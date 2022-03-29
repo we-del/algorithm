@@ -34,39 +34,47 @@ public class DynamicStrategy_55 {
 
     public static void main(String[] args) {
         DynamicStrategy_55 d = new DynamicStrategy_55();
-        System.out.println(d.canJump(new int[]{3, 0, 8, 2, 0, 0, 1}));
+        System.out.println(d.canJump(new int[]{3,0,8,2,0,0,1}));
     }
+
 
     public boolean canJump(int[] nums) {
-        int n = 1;
-        for (int i = nums.length - 2; i >= 0; i--) {
-            if (nums[i] >= n) {
-                n = 1;
-            } else {
-                n++;
-            }
-            if (i == 0 && n > 1) {
-                return false;
-            }
-        }
-        return true;
-
+         process(nums,0,0);
+         System.out.println(flag);
+         return flag;
     }
 
-    // 回溯法求解（有缺陷）
+
+    public void process(int[] nums, int step, int n) {
+        if (step >= nums.length - 1) {
+            flag = true;
+        }
+        for (int i = step;step < nums.length && i < nums[step]+step && i < nums.length; i++) {
+            if (nums[i] == 0) return;
+            process(nums, nums[i] + i, i + 1);
+        }
+    }
+
+
+
+    // leetcode解
 //    public boolean canJump(int[] nums) {
-//        process(nums, 0);
-//        return flag;
-//    }
-//
-//    public void process(int[] nums, int len) {
-//        if (len >= nums.length - 1) flag = true;
-//        for (int i = len; i < nums.length && i < len + nums[i]; i++) {
-//            if (nums[i] + i < nums.length - 1 && nums[nums[i] + i] == 0 && i != 0) {
-//                continue;
+//        int n=1;
+//        for(int i=nums.length-2;i>=0;i--){
+//            if(nums[i]>=n)
+//            {
+//                n=1;
 //            }
-//            process(nums, nums[i] + i);
+//            else
+//            {
+//                n++;
+//            }
+//            if(i==0&&n>1)
+//            {
+//                return false;
+//            }
 //        }
-//        flag = true;
+//        return true;
+//
 //    }
 }

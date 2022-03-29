@@ -1,5 +1,7 @@
 package com.leetcode.middle;
 
+import org.junit.Test;
+
 /**
  * ClassName: DynamicStrategy_198
  * Description:
@@ -77,5 +79,18 @@ public class DynamicStrategy_198 {
             tmp[i] = Math.max(tmp[i - 1], tmp[i - 2] + nums[i]);
         }
         return tmp[len - 1];  // 返回最大路径数
+    }
+
+    @Test
+    public void e(){
+        // 1 1 2 3 5 8 13 21
+        int n = 5;
+        int[] fib = new int[n];
+        fib[0] = 1;
+        fib[1] = 1;
+        for (int i = 2; i < n; i++) {
+            fib[i] = fib[i-1]+fib[i-2];
+        }
+        System.out.println(fib[n-1]);
     }
 }
