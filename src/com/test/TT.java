@@ -1,5 +1,7 @@
 package com.test;
 
+import org.junit.Test;
+
 /**
  * ClassName: TT
  * Description:
