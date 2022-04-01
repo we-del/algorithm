@@ -19,6 +19,13 @@ public class TT {
             cat.start();
         }
     }
+    @Test
+    public void e(){
+        final Object[] arr = new Object[10];
+        arr[0] = 1;
+        arr[0] = 2;
+        
+    }
 }
 class Cat extends Thread{
     @Override
