@@ -24,4 +24,13 @@ public class Knapsack {
         }
 
     }
+
+    public void e(){
+        class A{
+            class One{}
+        }
+        new A();
+        new A().new One();
+
+    }
 }
