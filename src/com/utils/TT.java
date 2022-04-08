@@ -18,23 +18,14 @@ interface IT{
 }
 public class TT {
     public static void main(String[] args) {
-        //求出1 - 1/2 + 1/3 - 1/4 + 1/5 - 1/6 .... 1/100
-        //思路分析:
-        //求和 sum 初始值等于0
-        //定义 自增变量sum1 从2 - 100
-        //for  循环输出 2-100
-        //定义 控符变量sum2 (sum1%2)为不为0,从而控制符号
-
-        process(new IT(){
-            @Override
-            public void test() {
-                System.out.println("我来实现匿名内部类");
-            }
-        });
+        //函数先进行传参调用,当被调用函数执行完后，就将其返回值返回到 改行(22行)
+        int a = max(6, 5);
+        System.out.println(a); // 打印a
+        // 也可以直接函数调用+打印
+        System.out.println(max(1,2));
     }
-    public static void process(IT it) {
-        it.test();
-
+    private static int max(int n1,int n2){
+        return Math.max(n1,n2);
     }
 
 }
