@@ -12,12 +12,10 @@ package com.algorithm.kmp;
  */
 public class KMP {
     public static void main(String[] args) {
-        System.out.println(violentSearch("ABBBAA ABC AA BB ABBBAA ABC AA BBABBBAA ABC AA BB" +
-                "AAA", "AAA"));
+        System.out.println(violentSearch("AABAABAACAABAAAA", "BAAA"));
         // =================================================================================
-        int[] next = getNext("AAA");
-        System.out.println(kmpSearch("ABBBAA ABC AA BB ABBBAA ABC AA BBABBBAA ABC AA BB" +
-                "AAA", "AAA", next));
+        int[] next = getNext("BAAA");
+        System.out.println(kmpSearch("AABAABAACAABAAAA", "BAAA", next));
     }
 
     public static int kmpSearch(String s1, String s2, int[] next) {
@@ -47,6 +45,8 @@ public class KMP {
             if (s1.charAt(i) == s2.charAt(j)) {
                 j++;
             } else { // 如果不等 则需要重新进行匹配 j 置为 0
+
+                if(j>0) i--;
                 j = 0;
             }
 

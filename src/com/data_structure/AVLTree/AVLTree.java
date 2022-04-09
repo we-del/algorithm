@@ -20,6 +20,10 @@ public class AVLTree {
         System.out.println("树的高度" + binaryTree.treeHeight());
         System.out.println("左子树高度" + binaryTree.leftHeight());
         System.out.println("右子树高度" + binaryTree.rightHeight());
+        binaryTree.infixOrder();
+        binaryTree.reverse();
+        System.out.println("=========");
+        binaryTree.infixOrder();
     }
 
 }
@@ -53,7 +57,7 @@ class BinaryTree {
                 // 需要右旋转
 
                 // 每次添加完一个节点后，判断其是否需要局部旋转(完成左边局部有序)
-                if (root.left.right != null &&root.left.right.right != null) {
+                if (root.left.right != null && root.left.right.right != null) {
                     root.leftPartRotate();
                 }
 
@@ -65,6 +69,10 @@ class BinaryTree {
 
     public Node removeNode(int value) {
         return root.removeNode(value);
+    }
+
+    public void reverse() {
+         root.reverse();
     }
 
     public void infixOrder() {
@@ -424,6 +432,19 @@ class Node {
         System.out.println(this);
         if (this.right != null) {
             this.right.infixOrder();
+        }
+    }
+
+    // 反转二叉树
+    public void reverse() {
+        Node tmp = this.left;
+        this.left = this.right;
+        this.right = tmp;
+        if (this.left != null) {
+            this.left.reverse();
+        }
+        if (this.right != null) {
+            this.right.reverse();
         }
     }
 }

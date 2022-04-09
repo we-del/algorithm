@@ -22,9 +22,9 @@ public class Practice {
         // graphTest(); // 图的测试
         // KMPTest();
         //startRadixSort();
-        //startMergeSort();
+        startMergeSort();
         //startHeapSort(); // 推排序测试
-        startQuickSort();
+       // startQuickSort();
     }
 
     public static void graphTest() {
@@ -119,45 +119,72 @@ class MergeSort {
         mergeSort(arr, 0, arr.length - 1);
     }
 
-    private void mergeSort(int[] arr, int left, int right) {
-
-
-        if (left != right) {
-            int mid = (right - left) / 2 + left;
-            mergeSort(arr, left, mid);
-            mergeSort(arr, mid + 1, right);
-            merge(arr, left, mid, right);
-
-        }
+    public void mergeSort(int[] arr, int left, int right) {
+        if (left >= right) return;
+        int mid = (right - left) / 2 + left;
+        mergeSort(arr, left, mid);
+        mergeSort(arr, mid + 1, right);
+        merge(arr, left, mid, right);
     }
 
-    private void merge(int[] arr, int left, int mid, int right) {
-        int[] tmp = new int[right - left + 1]; // 开辟最小的数组空间，每次值开动态的值
+    public void merge(int[] arr, int left, int mid, int right) {
+        int[] tmpArr = new int[right - left + 1];
         int l = left;
         int r = mid + 1;
         int index = 0;
         while (l <= mid && r <= right) {
-            if (arr[l] < arr[r]) {
-                tmp[index++] = arr[l++];
-            } else {
-                tmp[index++] = arr[r++];
-            }
+            if (arr[l] < arr[r]) tmpArr[index++] = arr[l++];
+            else tmpArr[index++] = arr[r++];
         }
-        while (l <= mid) {
-            tmp[index++] = arr[l++];
-        }
-        while (r <= right) {
-            tmp[index++] = arr[r++];
-        }
-
+        while (l <= mid) tmpArr[index++] = arr[l++];
+        while (r <= right) tmpArr[index++] = arr[r++];
         index = 0;
-        l = left;
-        r = right;
-        while (l <= r) {
-            arr[l++] = tmp[index++];
+        int cur = left;
+        while (cur <= right) {
+            arr[cur++] = tmpArr[index++];
         }
-
     }
+
+
+//    private void mergeSort(int[] arr, int left, int right) {
+//
+//
+//        if (left != right) {
+//            int mid = (right - left) / 2 + left;
+//            mergeSort(arr, left, mid);
+//            mergeSort(arr, mid + 1, right);
+//            merge(arr, left, mid, right);
+//
+//        }
+//    }
+//
+//    private void merge(int[] arr, int left, int mid, int right) {
+//        int[] tmp = new int[right - left + 1]; // 开辟最小的数组空间，每次值开动态的值
+//        int l = left;
+//        int r = mid + 1;
+//        int index = 0;
+//        while (l <= mid && r <= right) {
+//            if (arr[l] < arr[r]) {
+//                tmp[index++] = arr[l++];
+//            } else {
+//                tmp[index++] = arr[r++];
+//            }
+//        }
+//        while (l <= mid) {
+//            tmp[index++] = arr[l++];
+//        }
+//        while (r <= right) {
+//            tmp[index++] = arr[r++];
+//        }
+//
+//        index = 0;
+//        l = left;
+//        r = right;
+//        while (l <= r) {
+//            arr[l++] = tmp[index++];
+//        }
+//
+//    }
 }
 
 class Graph {
