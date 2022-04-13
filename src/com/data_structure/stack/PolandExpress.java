@@ -2,10 +2,7 @@ package com.data_structure.stack;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * ClassName: PolandExpress
@@ -29,7 +26,6 @@ public class PolandExpress {
         String str = invertToRearExpr("3*3-2/(2*3+2+(23-1))");  // 5 2 3 * 4 11 * 3 5 2 * 4 + + + + +
         //  String str = invertToRearExpr("1+((2+3)*4)-5");  //  1 2 3 + 4 * + 5 -
         inversePolandComputed(stringToList(str));
-
 
     }
 
