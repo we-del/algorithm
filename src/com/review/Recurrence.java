@@ -1,5 +1,6 @@
 package com.review;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -15,7 +16,9 @@ import java.util.List;
 public class Recurrence {
     public static void main(String[] args) {
         // testGraph();
-        testKMP();
+        // testKMP();
+        //  testShellSort();
+        testMergeSort();
     }
 
     private static void testGraph() {
@@ -32,6 +35,18 @@ public class Recurrence {
     private static void testKMP() {
         KMP kmp = new KMP("AAB", "AACAAWBBAAB");
         System.out.println(kmp.searchForKMP());
+    }
+
+    private static void testShellSort() {
+        ShellSort shellSort = new ShellSort(new int[]{5, 2, 3, 4, 1});
+        shellSort.startSort();
+        shellSort.list();
+    }
+
+    private static void testMergeSort() {
+        mergeSort mergeSort = new mergeSort(new int[]{5, 2, 3, 4, 1});
+        mergeSort.startSort();
+        mergeSort.list();
     }
 
     static class Graph {
@@ -228,6 +243,98 @@ public class Recurrence {
                 if (j == size) return i - j + 1;
             }
             return -1;
+        }
+    }
+
+    static class ShellSort {
+        private int[] arr;
+        private int size;
+
+        public ShellSort(int[] arr) {
+            this.arr = arr;
+            this.size = arr.length;
+        }
+
+        /**
+         * @description: 开始希尔排序
+         */
+        public void startSort() {
+            for (int len = size / 2; len > 0; len /= 2) {
+                for (int i = len; i < size; i++) {
+                    if (arr[i - len] < arr[i]) {
+                        int j = i;
+                        int initValue = arr[i];
+                        while (j - len >= 0 && arr[j - len] < initValue) {
+                            arr[j] = arr[j - len];
+                            j = j - len;
+                        }
+                        arr[j] = initValue;
+                    }
+                }
+            }
+        }
+
+        /**
+         * @description: 展示排序后的数组
+         */
+        public void list() {
+            System.out.println(Arrays.toString(arr));
+        }
+    }
+
+    static class mergeSort {
+        private int[] arr;
+        private int size;
+
+        public mergeSort(int[] arr) {
+            this.arr = arr;
+            this.size = arr.length;
+        }
+
+        /**
+         * @description: 开始归并排序
+         */
+        public void startSort() {
+            sort(this.arr, 0, this.arr.length - 1);
+        }
+
+        /**
+         * @description: 归并排序入口
+         */
+        private void sort(int[] arr, int left, int right) {
+            if (left >= right) return;
+            int mid = (right - left) / 2 + left;
+            sort(arr, left, mid);
+            sort(arr, mid + 1, right);
+            merge(arr, left, mid, right);
+        }
+
+        /**
+         * @description: 归并排序处理
+         */
+        private void merge(int[] arr, int left, int mid, int right) {
+            int[] tmp = new int[right - left + 1];
+            int l = left;
+            int r = mid + 1;
+            int index = 0;
+            while (l <= mid && r <= right) {
+                if (arr[l] < arr[r]) tmp[index++] = arr[l++];
+                else tmp[index++] = arr[r++];
+            }
+            while (l <= mid) tmp[index++] = arr[l++];
+            while (r <= right) tmp[index++] = arr[r++];
+            index = 0;
+            int cur = left;
+            while (cur <= right) arr[cur++] = tmp[index++];
+
+
+        }
+
+        /**
+         * @description: 展示排序后的数组
+         */
+        private void list() {
+            System.out.println(Arrays.toString(this.arr));
         }
     }
 }
