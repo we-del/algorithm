@@ -12,11 +12,25 @@ package com.algorithm.kmp;
  */
 public class KMP {
     public static void main(String[] args) {
-        System.out.println(violentSearch("AABAABAACAABAAAA", "BAAA"));
+        System.out.println(violentSearch("mississippi", "issip"));
+        System.out.println(kmp("mississippi", "issip"));
+        System.out.println("mississippi".indexOf("issip"));
         // =================================================================================
         int[] next = getNext("BAAA");
-        System.out.println(kmpSearch("AABAABAACAABAAAA", "BAAA", next));
+        System.out.println(kmpSearch("mississippi", "issip", next));
     }
+
+    private static int kmp(String pattern, String match) {
+        int[] next = getNext(pattern);
+        for (int i = 0, j = 0; i < match.length(); i++) {
+            while (j > 0 && pattern.charAt(j) != match.charAt(i)) j = next[j - 1];
+            if (pattern.charAt(j) == match.charAt(i)) j++;
+            if (j == pattern.length()) return i - j + 1;
+        }
+        return -1;
+    }
+
+
 
     public static int kmpSearch(String s1, String s2, int[] next) {
         for (int i = 0, j = 0; i < s1.length(); i++) {

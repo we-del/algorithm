@@ -22,8 +22,8 @@ public class Practice {
         // graphTest(); // 图的测试
         // KMPTest();
         //startRadixSort();
-        startMergeSort();
-        //startHeapSort(); // 推排序测试
+        //startMergeSort();
+        startHeapSort(); // 推排序测试
        // startQuickSort();
     }
 
@@ -66,9 +66,9 @@ public class Practice {
         System.out.println(Arrays.toString(arr));
     }
 
-    public static void startHeapSort() {
+    public static void startHeapSort() { // 检查堆排序
         HeapSort heapSort = new HeapSort();
-        int[] arr = {4, 5, 3, 6, 2, 1};
+        int[] arr = {-1,0,1,2,-1,-4};
         heapSort.heapSort(arr);
         System.out.println(Arrays.toString(arr));
     }

@@ -1,5 +1,7 @@
 package com.leetcode.easy;
 
+import org.junit.Test;
+
 /**
  * ClassName: LeetCode_14
  * Description:
@@ -48,5 +50,12 @@ public class LeetCode_14 {
             res += c;
         }
         return res;
+    }
+
+    @Test
+    public void e(){
+        String str = "123.zip";
+        System.out.println(str.substring(0,str.indexOf(".zip")));
+        System.out.println(str.substring(str.indexOf(".zip"),str.length()));
     }
 }
