@@ -1,5 +1,9 @@
 package com.leetcode.easy;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * ClassName: LeetCode_110
  * Description:
@@ -26,7 +30,7 @@ package com.leetcode.easy;
  */
 public class LeetCode_110 {
     public static void main(String[] args) {
-        int[] arr = new int[]{3, 9, 20, 15, 7,2,1};
+        int[] arr = new int[]{3, 9, 20, 15, 7, 2, 1};
         TreeNode treeNode = new TreeNode();
         for (int i : arr) {
             treeNode.add(i);
@@ -36,6 +40,7 @@ public class LeetCode_110 {
         System.out.println(treeNode.treeLeftHeight());
         System.out.println(treeNode.treeRightHeight());
         System.out.println(treeNode.isAVL());
+        System.out.println(treeNode.preOrder());
     }
 
     private static class TreeNode {
@@ -70,6 +75,10 @@ public class LeetCode_110 {
         public void infixOrder() {
             this.root.infixOrder();
         }
+
+        public List<Integer> preOrder() {
+            return this.root.preOrder(new ArrayList<Integer>());
+        }
     }
 
     private static class Node {
@@ -79,6 +88,18 @@ public class LeetCode_110 {
 
         public Node(int value) {
             this.value = value;
+        }
+
+        public List<Integer> preOrder(List<Integer> list) {
+            if (this == null) return null;
+            list.add(this.value);
+            if (this.left != null) {
+                 this.left.preOrder(list);
+            }
+            if (this.right != null) {
+                 this.right.preOrder(list);
+            }
+            return list;
         }
 
         public void infixOrder() {

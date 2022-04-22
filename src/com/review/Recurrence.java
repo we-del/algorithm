@@ -18,7 +18,8 @@ public class Recurrence {
         // testGraph();
         // testKMP();
         //  testShellSort();
-        testMergeSort();
+        //testMergeSort();
+        testRadixSort();
     }
 
     private static void testGraph() {
@@ -47,6 +48,13 @@ public class Recurrence {
         mergeSort mergeSort = new mergeSort(new int[]{5, 2, 3, 4, 1});
         mergeSort.startSort();
         mergeSort.list();
+    }
+
+
+    private static void testRadixSort() {
+        RadixSort radixSort = new RadixSort(new int[]{-5, 2, -3, 4, 1});
+        radixSort.startSort();
+        radixSort.list();
     }
 
     static class Graph {
@@ -278,6 +286,66 @@ public class Recurrence {
          * @description: 展示排序后的数组
          */
         public void list() {
+            System.out.println(Arrays.toString(arr));
+        }
+    }
+
+    static class RadixSort {
+        private int[] arr;
+        private int minNum;
+        private int maxOrder;
+
+        public RadixSort(int[] arr) {
+            this.arr = arr;
+            for (int i : arr) {
+                if (i < 0)
+                    minNum = Math.min(i, minNum);
+                maxOrder = Math.max(i, maxOrder);
+            }
+            maxOrder = (maxOrder + "").length();
+        }
+
+        /**
+         * @description: 开始基数排序
+         */
+        public void radixSort() {
+
+            // 补齐负数
+            for (int i = 0; i < arr.length; i++) {
+                arr[i] += Math.abs(minNum);
+            }
+
+            int[][] bucket = new int[10][arr.length];
+            int[] count = new int[10];
+            for (int i = 0, n = 1; i < maxOrder; i++, n *= 10) {
+                for (int j = 0; j < arr.length; j++) {
+                    int index = arr[j] / n % 10;
+                    bucket[index][count[index]++] = arr[j];
+                }
+                int cur = 0;
+                for (int j = 0; j < count.length; j++) {
+                    if(count[j]>0){
+                        for (int k = 0; k < count[j]; k++) {
+                            arr[cur++] = bucket[j][k];
+                        }
+                        count[j] = 0;
+                    }
+                }
+            }
+            for (int i = 0; i < arr.length; i++) {
+                arr[i] -= Math.abs(minNum);
+            }
+            
+
+        }
+
+        public void startSort(){
+            radixSort();
+        }
+        /**
+            @description: 展示排序后的数组
+        */
+        public void list(){
             System.out.println(Arrays.toString(arr));
         }
     }
