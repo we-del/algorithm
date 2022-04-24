@@ -68,7 +68,7 @@ public class Practice {
 
     public static void startHeapSort() { // 检查堆排序
         HeapSort heapSort = new HeapSort();
-        int[] arr = {-1,0,1,2,-1,-4};
+        int[] arr = {-7,7,-6,6,-1,2,5,-5,-2,8};
         heapSort.heapSort(arr);
         System.out.println(Arrays.toString(arr));
     }
